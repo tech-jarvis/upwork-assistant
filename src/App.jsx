@@ -187,8 +187,8 @@ export default function App() {
       const text = data.content?.map(i => i.text || "").join("") || "";
       const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
       setResult(parsed);
-    } catch {
-      setProposalError("Analysis failed. Please try again.");
+    } catch (err) {
+      setProposalError(err.message || "Analysis failed. Please try again.");
     } finally {
       setAnalyzing(false);
     }
